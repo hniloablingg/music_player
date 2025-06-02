@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2>Music Player</h2>
+                            <button id="theme-toggle" class="btn btn-outline-secondary">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Current Song Display -->
+                        <div id="current-song" class="text-center mb-3">
+                            <h4>Select a song</h4>
+                        </div>
+
+                        <!-- Audio Element -->
+                        <audio id="audio" src=""></audio>
+
+                        <!-- Visualizer -->
+                        <div class="visualizer-container mb-4">
+                            <canvas id="visualizer"></canvas>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="progress-container mb-3">
+                            <span id="current-time">0:00</span>
+                            <input type="range" id="progress" value="0" max="100" class="form-range">
+                            <span id="duration">0:00</span>
+                        </div>
+
+                        <!-- Controls -->
+                        <div class="controls text-center mb-4">
+                            <button id="seek-backward" class="btn btn-outline-primary">
+                                <i class="fas fa-backward-step"></i>
+                            </button>
+                            <button id="prev" class="btn btn-outline-primary">
+                                <i class="fas fa-backward"></i>
+                            </button>
+                            <button id="play-pause" class="btn btn-primary mx-2">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button id="next" class="btn btn-outline-primary">
+                                <i class="fas fa-forward"></i>
+                            </button>
+                            <button id="seek-forward" class="btn btn-outline-primary">
+                                <i class="fas fa-forward-step"></i>
+                            </button>
+                        </div>
+
+                        <!-- Playback Speed -->
+                        <div class="playback-speed mb-3">
+                            <label class="form-label">Playback Speed:</label>
+                            <select id="playback-speed" class="form-select">
+                                <option value="0.5">0.5x</option>
+                                <option value="1" selected>1x</option>
+                                <option value="1.5">1.5x</option>
+                                <option value="2">2x</option>
+                            </select>
+                        </div>
+
+                        <!-- Volume Control -->
+                        <div class="volume-container mb-4">
+                            <label class="form-label">Volume:</label>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-volume-down me-2"></i>
+                                <input type="range" id="volume" value="100" max="100" class="form-range">
+                                <i class="fas fa-volume-up ms-2"></i>
+                            </div>
+                        </div>
+
+                        <!-- Sleep Timer -->
+                        <div class="sleep-timer mb-4">
+                            <label class="form-label">Sleep Timer:</label>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-secondary" data-minutes="1">1 min</button>
+                                <button class="btn btn-outline-secondary" data-minutes="5">5 min</button>
+                                <button class="btn btn-outline-secondary" data-minutes="10">10 min</button>
+                                <button class="btn btn-outline-secondary" data-minutes="30">30 min</button>
+                                <button class="btn btn-outline-danger" id="cancel-timer">Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- Playlists -->
+                        <div class="playlists-container mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3>Playlists</h3>
+                                <button class="btn btn-primary" id="new-playlist">
+                                    <i class="fas fa-plus"></i> New Playlist
+                                </button>
+                            </div>
+                            <div class="playlist-tabs mb-3">
+                                <ul class="nav nav-tabs" id="playlistTabs" role="tablist">
+                                    <!-- Playlist tabs will be added dynamically -->
+                                </ul>
+                            </div>
+                            <div class="tab-content" id="playlistContent">
+                                <!-- Playlist content will be added dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Lyrics -->
+                        <div class="lyrics-container mb-4">
+                            <h3>Lyrics</h3>
+                            <div id="lyrics" class="lyrics-text">
+                                <!-- Lyrics will be added dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Share -->
+                        <div class="share-container mb-4">
+                            <button id="share-btn" class="btn btn-outline-primary">
+                                <i class="fas fa-share-alt"></i> Share Current Song
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Playlist Modal -->
+    <div class="modal fade" id="newPlaylistModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New Playlist</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="playlist-name" placeholder="Enter playlist name">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="create-playlist">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add URL Song Modal -->
+    <div class="modal fade" id="addUrlSongModal" tabindex="-1" aria-labelledby="addUrlSongModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUrlSongModalLabel">Add Song from URL</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-url-song-form">
+                        <div class="mb-3">
+                            <label for="song-url" class="form-label">YouTube URL or Direct Audio URL</label>
+                            <input type="url" class="form-control" id="song-url" required 
+                                   placeholder="Enter YouTube URL (e.g., https://www.youtube.com/watch?v=...) or direct audio URL">
+                            <small class="form-text text-muted">YouTube videos will be converted to MP3 format.</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="playlist-select" class="form-label">Select Playlist</label>
+                            <select class="form-select" id="playlist-select">
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                        <div id="conversion-status" class="alert alert-info d-none">
+                            Converting video to MP3... Please wait.
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="add-url-song">Add Song</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add URL Song Button -->
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUrlSongModal">
+        <i class="fas fa-plus"></i> Add from URL
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+    <style>
+    .lyrics-container {
+        height: 200px;
+        overflow-y: auto;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin: 1rem 0;
+    }
+
+    .lyric-line {
+        padding: 0.5rem;
+        transition: all 0.3s ease;
+        opacity: 0.7;
+    }
+
+    .lyric-line.current {
+        color: #1db954;
+        font-weight: bold;
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    /* Dark mode styles */
+    .dark-mode .lyrics-container {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .dark-mode .lyric-line.current {
+        color: #1ed760;
+    }
+    </style>
+</body>
+</html> 
