@@ -1,5 +1,6 @@
 // DOM Elements
 const audio = document.getElementById('audio');
+audio.crossOrigin = "anonymous";
 const playPauseBtn = document.getElementById('play-pause');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
@@ -21,6 +22,7 @@ const createPlaylistBtn = document.getElementById('create-playlist');
 const playlistNameInput = document.getElementById('playlist-name');
 const playlistTabs = document.getElementById('playlistTabs');
 const playlistContent = document.getElementById('playlistContent');
+const musicBg = document.getElementById('music-bg');
 
 // Audio Context for Visualizer
 let audioContext;
@@ -31,6 +33,7 @@ let sourceNode;
 
 // Sleep Timer
 let sleepTimer;
+let activeTimerButton = null;
 
 // Playlists
 let playlists = {
@@ -38,7 +41,7 @@ let playlists = {
         {
             title: 'Thôi Em Đừng Đi - RPT MCK',
             path: 'music/a.mp3',
-            lyrics: 'Lyrics will be displayed here...',
+            lyrics: '[00:14.43] Ngày có trôi về tặng em một cây son để em tô hồng duyên (Your lips swaying)\n[00:21.41] Chờ đến bao giờ tại sao mà anh lại không làm em bỡ ngỡ (Yeah)\n[00:27.95] Em ngồi khóc trong phòng làm anh chẳng muốn viết thêm tình ca (Oh oh oh oh)\n[00:34.65] Dành một góc trong lòng thôi thì ta chỉ còn mình ta\n[00:40.12] Ngày nào còn say tình có thấy nhớ về em (Oh)\n[00:43.66] Tại vì sao mình cố lấy cớ để quên (thế?)\n[00:47.07] Bao ngày không gặp gỡ em đã đỡ hơn chưa (Yeah)\n[00:50.47] Thôi em đừng đi không lại lỡ cơn mưa (Yeah)\n[00:53.72] Thì thôi em đừng đi anh đâu thể ngừng nghĩ\n[00:56.96] Cho anh một lí do hãy nói em cần gì\n[01:00.36] Bởi vì anh chẳng thể chờ thêm một vạn kiếp sau\n[01:03.80] Con tim anh đã biết đau vì tình yêu phai màu\n[01:06.89] Thì thôi em đừng đi anh đâu thể ngừng nghĩ\n[01:10.51] Anh muốn chạy đến bên em\n[01:12.06] Nơi phố quen đã lên đèn\n[01:13.85] Tại sao ta phải quên, vậy tại sao ta phải quên nhờ? (Uh uh)\n[01:21.93] (Okay)\n[01:21.93] Don’t killin my vibe okay\n[01:23.81] Swaying swaying all night all day\n[01:25.40] Tim anh - dynamite okay\n[01:27.10] Còn tim em thì xem là ai ở đấy\n[01:28.81] Bảo là không còn yêu nhưng mà anh vẫn buồn\n[01:30.53] Nước mắt ở hai hàng mi lại chậm tuôn\n[01:32.25] Mưa rơi pop một chai dùng luôn\n[01:33.91] Rót ra cho cả hai cùng uống\n[01:35.05] Chỉ tiếc em không biết rằng anh vẫn luôn ân cần\n[01:38.54] Vẫn viết những lời ngây ngất\n[01:40.17] Mình anh trong hoàng hôn bất tận\n[01:42.26] Nâng ly lên cho nỗi buồn vơi\n[01:44.07] Xin em hãy cứ dỗi hờn tôi\n[01:45.76] Đường xa đêm cũng đã muộn rồi\n[01:47.37] Xích lại thêm môi gần đôi môi\n[01:49.22] Liệu ngày có trôi về tặng em một cây son để em tô hồng duyên\n[01:54.42] Hãy nói cho anh nghe\n[01:56.09] Dưới những ánh đèn\n[01:57.87] Nhưng em chỉ lặng thinh, chỉ lặng thinh\n[02:01.27] Thì thôi cứ vậy đi, anh cũng không thể đứng yên\n[02:04.65] Chờ cho ngày tháng cứ thế thấm thoát\n[02:07.85] Ừ thì có bao giờ em chợt nhớ đến một người,\n[02:11.36] từng là tình yêu của em?\n[02:13.50] Sing it!\n[02:14.76] Ngày nào còn say tình có thấy nhớ về em\n[02:18.24] Tại vì sao mình cố lấy cớ để quên (hết)\n[02:21.72] Bao ngày không gặp gỡ em đã đỡ hơn chưa\n[02:25.16] Thôi em đừng đi không lại lỡ cơn mưa',
             artist: 'RPT MCK',
             duration: 0,
             addedFrom: 'local'
@@ -46,23 +49,23 @@ let playlists = {
         {
             title: 'Anh Vui - Phạm Kỳ (Duzme Remix)',
             path: 'music/b.mp3',
-            lyrics: 'Lyrics will be displayed here...',
+            lyrics: '[00:06.20] Anh vui đến nỗi lẹ nào nhìn người ta cầm\n[00:08.88] nhẫn cưới cha anh cũng có chút tự hào vì\n[00:11.88] người mình thương hạnh phúc như ngà áo\n[00:13.63] cưới em màu trắng tim cô gái anh thật\n[00:16.19] sắc xinh giật mình cứ ngơ anh đừng cạnh\n[00:19.12] em trong lễ cười anh vui sao nất c tuồng\n[00:21.88] trào chẳng phải như thế quá tốt hay sao\n[00:24.36] anh ta đáng giá nhường nào ngược lại\n[00:26.60] nhìn anh trong trắng ra sao cũng đúng\n[00:28.84] thôi\n[00:30.19] Anh làm gì xưng đang với\n[00:34.52] em ngày anh cũng đến em gọi đền bao tin\n[00:38.44] vui ngày mai đây thôi là ngày em lấy\n[00:41.64] trong rồi dạng này anh thế nào nếu không\n[00:45.20] vận thì tới chung\n[00:48.76] vui cuộc gọi sấu chết tay lần này mang\n[00:52.28] chuốc đáng cay từ ngày ta buông tay\n[00:55.20] chẳng ngờ có kết cục này thôi anh tốt\n[00:58.07] mới đây\n[00:59.60] Cảm ơn vì em ngõ lời\n[01:03.40] mời. Anh vui đến nỗi hẹn đào nhìn người\n[01:06.60] ta công nhẫn cưới cha anh không có chút\n[01:08.92] tự hào vì người mình thương hạnh phúc\n[01:11.15] như nào. Áo cưới em màu trắng tin cô gái\n[01:13.92] anh thật sắc sinh giật mình cứ ngơ anh\n[01:16.80] đừng cần em trong lễ cười. Anh vui sao\n[01:19.44] đứng ngất c tuồng tràng chẳng phải như\n[01:21.40] thế quá tốt hay sao anh ta đáng giá\n[01:23.48] đường nào ngược lại nhìn anh trong trắng\n[01:25.68] ra sao cũng đúng thôi anh làm gì xưng\n[01:30.28] đang với เฮ\n[02:03.68] Cầng nhân cưới trên tay em phận lâu đi\n[02:06.00] nước mắt đây. Đàn ông tốt như vậy nếu là\n[02:09.12] anh cũng sẽ yêu thôi. Bữa môi đã chạm\n[02:11.84] rồi anh cũng thấy bùi hồn thế như thế.\n[02:17.12] Một cột sống trên tay lần này mang chuốc\n[02:19.88] đáng cay từ ngày ta buông tay chẳng ngờ\n[02:23.00] có kết cục này thôi anh cúc mới đây cảm\n[02:27.20] ơn vì em ngó lời\n[02:30.64] mới anh vui đến nỗi đẹp nhìn người ta\n[02:34.16] không nhẫn cưới cha anh không có chút tự\n[02:36.40] hào vì người mình thương hạnh phúc như\n[02:38.68] nam áo cưới em màu trắng tin cô gái anh\n[02:41.40] thật sắc sinh giật mình cứ ngơ anh đừng\n[02:44.36] cần em trong lễ cười anh vui sa nước mắt\n[02:46.96] c tuồng trào chẳng phải như thế quá tốt',
             artist: 'Phạm Kỳ',
             duration: 0,
             addedFrom: 'local'
         },
         {
-            title: 'SODA - MCK',
+            title: 'Đi Qua Mùa Hạ',
             path: 'music/c.mp3',
-            lyrics: 'Lyrics will be displayed here...',
-            artist: 'MCK',
+            lyrics: '[00:15.705] Mùa hạ đang trôi qua\n[00:19.455] Và em cũng đi xa\n[00:23.340] Về đâu tia nắng mong manh lướt qua thờ ơ\n[00:27.220] Để trái tim vụn vỡ...\n[00:31.480] Mùa hạ đang phôi pha\n[00:35.135] Tình ta cũng phai nhoà\n[00:39.095] Còn đâu những giấc mơ ấm êm những ngày thơ\n[00:42.795] Để trái tim trở về...\n[00:46.825] Chuyến xe đưa mình đến đâu\n[00:50.180] Lạc mất nhau... nén trong tim một nỗi đau\n[00:54.700] Giấc mơ âm thầm đã lâu\n[00:58.220] Trôi theo ngày yêu dấu...\n[01:02.820] Khép đôi mi buồn khắc sâu\n[01:05.560] Lặng phía sau những con đường ta...\n[01:08.560] ...hôm qua cứ phôi phai nhạt màu\n[01:11.220] Bàn chân cũng thôi bước giữa ngày...\n[01:14.520] ...buồn trôi rất mau\n[01:18.220] Sao em lại không nói?\n[01:20.420] Sao anh lại không nói?\n[01:23.020] Để mùa hạ chói chang muộn màng chiều lang thang\n[01:26.460] Sao bao tia nắng không chiếu trong lòng?\n[01:30.180] Để nỗi buồn cứ lặng thầm nơi xa xăm...\n[01:34.480] Sao em lại không nói?\n[01:36.500] Sao ta lại không nói?\n[01:38.160] Để mùa hạ trôi miên mang qua từng đêm vắng\n[01:42.600] Làm sao cho mưa thôi rơi...\n[01:44.760] Để mình ta đơn côi bước qua mùa hạ...\n[02:21.355] Chuyến xe đưa mình đến đâu\n[02:24.180] Lạc mất nhau nén trong tim một nỗi đau\n[02:29.100] Giấc mơ âm thầm đã lâu\n[02:33.080] Trôi theo ngày yêu dấu\n[02:37.360] Khép đôi mi buồn khắc sâu\n[02:39.920] Lặng phía sau những con đường ta...\n[02:43.000] ...hôm qua cứ phôi phai nhạt màu\n[02:45.540] Bàn chân cũng thôi bước giữa ngày...\n[02:48.940] ...buồn trôi rất mau...\n[02:53.020] Sao em lại không nói?\n[02:54.880] Sao anh lại không nói?\n[02:56.980] Để mùa hạ chói chang muộn màng chiều lang thang\n[03:00.940] Sao bao tiếng nắng không chiếu trong lòng?\n[03:04.600] Để nỗi buồn cứ lặng thầm nơi xa xăm\n[03:08.720] Sao em lại không nói?\n[03:10.760] Sao ta lại không nói?\n[03:12.980] Để mùa hạ trôi miên man qua từng đêm vắng\n[03:17.160] Làm sao cho mưa thôi rơi?\n[03:19.300] Để mình ta đơn côi bước qua mùa hạ\n[03:24.380] Sao em lại không nói?\n[03:26.460] Sao ta lại không nói?\n[03:28.760] Để mùa hạ trôi miên man qua từng đêm vắng\n[03:32.760] Làm sao cho mưa thôi rơi?',
+            artist: 'Thái Đinh',
             duration: 0,
             addedFrom: 'local'
         },
         {
             title: 'Thiên Lý Ơi - Jack-97',
             path: 'music/d.mp3',
-            lyrics: 'Lyrics will be displayed here...',
+            lyrics: '[00:07.319] ngày hôm nay trời Trung danh đẹp như\n[00:09.440] tranh mình cùng giào vong quanh cả thế\n[00:11.440] giới đừng vôi nhanh muốn hình trỉ nhặt\n[00:13.440] ký yêu thương đời mình ác vu vơ về tình\n[00:16.000] đầu em ơi ngày hôm ấy là cô bé tu Đôi\n[00:20.000] Mới vậy mà giờ đã lớn trường thành hơn\n[00:22.080] mặc về cười chạ đ Dữ xương bướt Gem tôi\n[00:24.519] phình ng mái cêu x đẹp tuyệt vời anh ở\n[00:28.599] vùng quê kh Hiều khó đó có trăm điều khó\n[00:33.120] muốn lên thành phố nên phải cố sao cho\n[00:36.600] bụng anh luôn No thế rồi gặp em nhưng\n[00:40.200] vùn vỡ đã lỡ đêm lại nhớ năm\n[00:44.960] mớ gọi tên\n[00:48.399] em Thiên Lý ơi em có thể ở lại đây không\n[00:54.000] biết chăng ngoài trời mưa giong nhiều cơ\n[00:56.920] đi lắm\n[00:58.920] ê Thiên Lý ơi Anh chỉ mong người bề thôi\n[01:04.239] nóm tay chặt nôi mơi x ngi xư l\n[01:23.040] đă nhiều vô nó dữ lắm á chư Vui quá Vui\n[01:29.479] quá\n[01:31.119] em yêu ái em đang yêu thương ái hay em\n[01:33.720] đang cô Đông chờ máu x cho tương Lái sao\n[01:36.159] cũng yêu ng bây giờ mà anh cho anh những\n[01:38.159] ngày thơ Đêm nay có làm ngơ bơ vơ như kẻ\n[01:40.600] làm thơ ngơ một mình đy x lại ngẫn ngơ\n[01:42.720] ng thư về con ngư là mà lòng thấy ngẫn\n[01:44.960] ngơ mẫu trên nào mình từng ngọt ngạo giờ\n[01:47.159] kết tay nắm tay áo em khép bay nhẹ láy\n[01:51.119] Anh ở cùng quê khô nghèo khó đó khó Trăm\n[01:55.680] điều khó muốn lên thành phố nên phải cố\n[01:59.479] Gi cho bụng anh muôn đ thế rồi gặp tiếng\n[02:03.320] như Cùng cỡ đã lỡ đêm lại nhớ Năm B có\n[02:11.640] đ đ th lý hơi em có thể ở lại đây không\n[02:17.200] ít chăng ngoài trời Mư Dong nhiều cơ đơ\n[02:20.760] lắm\n[02:22.800] Mê Thiên Lý ơi anh chỉ món người Bình\n[02:26.640] Nguyên thối nm Tây chặt nii m x ngi gi\n[02:31.280] lưng đố\n[02:34.200] V người là giấc mơ phiu phông lặng lẽ\n[02:39.800] như là gió đông đêm lạnh s sâ\n[02:44.920] sớ trời làm mã em thêm hồng một đời An\n[02:50.480] Yên anh hấy nhe\n[02:54.200] lòng trời ngn thờ Duyên chúng ta thành\n[02:57.599] thên l ơi em ở lại đy Khó nhết chăng\n[03:02.480] ngài trời mưa D nhiều cô đá\n[03:07.080] nơ thên đi ơi em ch b b đi ơi đng tay',
             artist: 'Jack-97',
             duration: 0,
             addedFrom: 'local'
@@ -94,14 +97,21 @@ function initPlayer() {
     // Set initial volume
     audio.volume = volumeBar.value / 100;
 
-    // Initialize audio context and connect source node once
-    initAudioContext();
-    sourceNode = audioContext.createMediaElementSource(audio);
-    sourceNode.connect(analyser);
-    analyser.connect(audioContext.destination);
+    // Initialize audio context and connect source node ONCE
+    if (!audioContext) {
+        initAudioContext();
+        sourceNode = audioContext.createMediaElementSource(audio);
+        sourceNode.connect(analyser);
+        analyser.connect(audioContext.destination);
+    }
 
     // Load the first song initially
     loadSong(currentPlaylist, currentSongIndex);
+}
+
+function resizeVisualizerCanvas() {
+    visualizer.width = visualizer.offsetWidth;
+    visualizer.height = visualizer.offsetHeight;
 }
 
 // Initialize Audio Context for Visualizer
@@ -166,17 +176,28 @@ function initPlaylistsUI() {
         content.className = `tab-pane fade ${playlistName === currentPlaylist ? 'show active' : ''}`;
         content.id = `playlist-${playlistName}`;
         content.innerHTML = `
-            <ul class="list-group">
+            <ul class="list-group" id="list-group-${playlistName}">
                 ${playlists[playlistName].map((song, songIndex) => `
-                    <li class="list-group-item" onclick="selectSong(${songIndex})">
-                        ${song.title}
-                    </li>
+                    <li class="list-group-item">${song.title}</li>
                 `).join('')}
             </ul>
         `;
         playlistContent.appendChild(content);
     });
     updateActivePlaylistItem();
+
+    // Gán lại sự kiện click cho từng item
+    Object.keys(playlists).forEach((playlistName) => {
+        const ul = document.getElementById(`list-group-${playlistName}`);
+        if (ul) {
+            Array.from(ul.children).forEach((li, idx) => {
+                li.onclick = () => {
+                    currentPlaylist = playlistName;
+                    selectSong(idx);
+                };
+            });
+        }
+    });
 }
 
 // Change active playlist
@@ -192,7 +213,19 @@ function changePlaylist(playlistName) {
 // Load song source and update UI, but don't auto play
 function loadSong(playlistName, songIndex) {
     const song = playlists[playlistName][songIndex];
-    audio.src = song.path;
+    console.log('Loading song:', song); // Log để kiểm tra
+
+    // Nếu là file ngoài, dùng proxy server Node.js tự tạo
+    if (!(song.path.startsWith('music/') || song.path.startsWith(window.location.origin))) {
+        audio.src = 'http://localhost:3000/proxy?url=' + encodeURIComponent(song.path);
+        visualizer.style.display = 'none';
+        if (musicBg) musicBg.style.display = 'block';
+    } else {
+        audio.src = song.path;
+        visualizer.style.display = 'block';
+        if (musicBg) musicBg.style.display = 'none';
+    }
+
     currentSongDisplay.textContent = song.title;
     updateActivePlaylistItem();
     updateLyrics();
@@ -226,7 +259,7 @@ function updateProgress() {
 function updateLyrics() {
     const currentSong = playlists[currentPlaylist][currentSongIndex];
     if (!currentSong.lyrics) {
-        lyricsContainer.textContent = 'No lyrics available.';
+        lyricsContainer.innerHTML = '<div class="text-center text-muted">No lyrics available. Click "Edit Lyrics" to add them.</div>';
         return;
     }
 
@@ -257,10 +290,17 @@ function updateLyrics() {
         
         lyricsContainer.innerHTML = html;
         
-        // Scroll current line into view
+        // Scroll current line into view within the container
         const currentElement = lyricsContainer.querySelector('.current');
         if (currentElement) {
-            currentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const containerRect = lyricsContainer.getBoundingClientRect();
+            const elementRect = currentElement.getBoundingClientRect();
+            const scrollTop = currentElement.offsetTop - lyricsContainer.offsetHeight / 2 + currentElement.offsetHeight / 2;
+            
+            lyricsContainer.scrollTo({
+                top: scrollTop,
+                behavior: 'smooth'
+            });
         }
     }
 }
@@ -268,6 +308,7 @@ function updateLyrics() {
 // Play song
 function playSong() {
     const currentSong = playlists[currentPlaylist][currentSongIndex];
+    console.log('Playing song:', currentSong);
     audio.src = currentSong.path;
     currentSongDisplay.textContent = currentSong.title;
 
@@ -331,12 +372,32 @@ function toggleDarkMode() {
 
 // Set sleep timer
 function setSleepTimer(minutes) {
+    // Remove active class from previous button if exists
+    if (activeTimerButton) {
+        activeTimerButton.classList.remove('active');
+    }
+
     if (sleepTimer) {
         clearTimeout(sleepTimer);
+        sleepTimer = null;
+        activeTimerButton = null;
+        return;
     }
+
+    // Add active class to clicked button
+    const clickedButton = document.querySelector(`.sleep-timer button[data-minutes="${minutes}"]`);
+    if (clickedButton) {
+        clickedButton.classList.add('active');
+        activeTimerButton = clickedButton;
+    }
+
     sleepTimer = setTimeout(() => {
         pauseSong();
         sleepTimer = null;
+        if (activeTimerButton) {
+            activeTimerButton.classList.remove('active');
+            activeTimerButton = null;
+        }
     }, minutes * 60 * 1000);
 }
 
@@ -443,15 +504,9 @@ themeToggle.addEventListener('click', toggleDarkMode);
 
 document.querySelectorAll('.sleep-timer button[data-minutes]').forEach(button => {
     button.addEventListener('click', () => {
-        setSleepTimer(parseInt(button.dataset.minutes));
+        const minutes = parseInt(button.dataset.minutes);
+        setSleepTimer(minutes);
     });
-});
-
-document.getElementById('cancel-timer').addEventListener('click', () => {
-    if (sleepTimer) {
-        clearTimeout(sleepTimer);
-        sleepTimer = null;
-    }
 });
 
 newPlaylistBtn.addEventListener('click', () => {
@@ -542,21 +597,20 @@ async function addSongFromURL(url, playlistName = 'Default') {
             conversionStatus.textContent = 'Starting conversion...';
             addButton.disabled = true;
             
+            const apiUrl = `https://youtube-to-mp315.p.rapidapi.com/download?url=https://www.youtube.com/watch?v=${videoId}`;
             const rapidApiOptions = {
                 method: 'POST',
                 headers: {
-                    'content-type': 'application/json',
                     'X-RapidAPI-Key': '87992f059emsh4cc4da77b7bfa50p19bbefjsnca472dce8c14',
                     'X-RapidAPI-Host': 'youtube-to-mp315.p.rapidapi.com'
-                },
-                body: JSON.stringify({ url: `https://www.youtube.com/watch?v=${videoId}` })
+                }
             };
 
             try {
                 console.log('Initiating conversion for video ID:', videoId);
                 
                 // Step 1: Request conversion (POST /download)
-                const downloadResponse = await fetch('https://youtube-to-mp315.p.rapidapi.com/download', rapidApiOptions);
+                const downloadResponse = await fetch(apiUrl, rapidApiOptions);
                 const downloadData = await downloadResponse.json();
                 
                 console.log('Download request response:', downloadData);
@@ -727,4 +781,33 @@ document.getElementById('add-url-song').addEventListener('click', () => {
         addSongFromURL(url, playlist);
         urlInput.value = '';
     }
+});
+
+// Add event listener for lyrics editing
+document.getElementById('edit-lyrics').addEventListener('click', () => {
+    const currentSong = playlists[currentPlaylist][currentSongIndex];
+    const lyricsText = document.getElementById('lyrics-text');
+    lyricsText.value = currentSong.lyrics || '';
+    
+    const modal = new bootstrap.Modal(document.getElementById('editLyricsModal'));
+    modal.show();
+});
+
+// Add event listener for saving lyrics
+document.getElementById('save-lyrics').addEventListener('click', () => {
+    const lyricsText = document.getElementById('lyrics-text').value;
+    const currentSong = playlists[currentPlaylist][currentSongIndex];
+    
+    // Update lyrics in the playlist
+    currentSong.lyrics = lyricsText;
+    
+    // Save to localStorage
+    localStorage.setItem('playlists', JSON.stringify(playlists));
+    
+    // Update display
+    updateLyrics();
+    
+    // Close modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('editLyricsModal'));
+    modal.hide();
 }); 
