@@ -57,7 +57,7 @@ let playlists = {
         {
             title: 'Đi Qua Mùa Hạ',
             path: 'music/c.mp3',
-            lyrics: '[00:15.705] Mùa hạ đang trôi qua\n[00:19.455] Và em cũng đi xa\n[00:23.340] Về đâu tia nắng mong manh lướt qua thờ ơ\n[00:27.220] Để trái tim vụn vỡ...\n[00:31.480] Mùa hạ đang phôi pha\n[00:35.135] Tình ta cũng phai nhoà\n[00:39.095] Còn đâu những giấc mơ ấm êm những ngày thơ\n[00:42.795] Để trái tim trở về...\n[00:46.825] Chuyến xe đưa mình đến đâu\n[00:50.180] Lạc mất nhau... nén trong tim một nỗi đau\n[00:54.700] Giấc mơ âm thầm đã lâu\n[00:58.220] Trôi theo ngày yêu dấu...\n[01:02.820] Khép đôi mi buồn khắc sâu\n[01:05.560] Lặng phía sau những con đường ta...\n[01:08.560] ...hôm qua cứ phôi phai nhạt màu\n[01:11.220] Bàn chân cũng thôi bước giữa ngày...\n[01:14.520] ...buồn trôi rất mau\n[01:18.220] Sao em lại không nói?\n[01:20.420] Sao anh lại không nói?\n[01:23.020] Để mùa hạ chói chang muộn màng chiều lang thang\n[01:26.460] Sao bao tia nắng không chiếu trong lòng?\n[01:30.180] Để nỗi buồn cứ lặng thầm nơi xa xăm...\n[01:34.480] Sao em lại không nói?\n[01:36.500] Sao ta lại không nói?\n[01:38.160] Để mùa hạ trôi miên mang qua từng đêm vắng\n[01:42.600] Làm sao cho mưa thôi rơi...\n[01:44.760] Để mình ta đơn côi bước qua mùa hạ...\n[02:21.355] Chuyến xe đưa mình đến đâu\n[02:24.180] Lạc mất nhau nén trong tim một nỗi đau\n[02:29.100] Giấc mơ âm thầm đã lâu\n[02:33.080] Trôi theo ngày yêu dấu\n[02:37.360] Khép đôi mi buồn khắc sâu\n[02:39.920] Lặng phía sau những con đường ta...\n[02:43.000] ...hôm qua cứ phôi phai nhạt màu\n[02:45.540] Bàn chân cũng thôi bước giữa ngày...\n[02:48.940] ...buồn trôi rất mau...\n[02:53.020] Sao em lại không nói?\n[02:54.880] Sao anh lại không nói?\n[02:56.980] Để mùa hạ chói chang muộn màng chiều lang thang\n[03:00.940] Sao bao tiếng nắng không chiếu trong lòng?\n[03:04.600] Để nỗi buồn cứ lặng thầm nơi xa xăm\n[03:08.720] Sao em lại không nói?\n[03:10.760] Sao ta lại không nói?\n[03:12.980] Để mùa hạ trôi miên man qua từng đêm vắng\n[03:17.160] Làm sao cho mưa thôi rơi?\n[03:19.300] Để mình ta đơn côi bước qua mùa hạ\n[03:24.380] Sao em lại không nói?\n[03:26.460] Sao ta lại không nói?\n[03:28.760] Để mùa hạ trôi miên man qua từng đêm vắng\n[03:32.760] Làm sao cho mưa thôi rơi?',
+            lyrics: `[00:15.70] Mùa hạ đang trôi qua\n[00:19.45] Và em cũng đi xa\n[00:23.34] Về đâu tia nắng mong manh lướt qua thờ ơ\n[00:27.22] Để trái tim vụn vỡ...\n[00:31.48] Mùa hạ đang phôi pha\n[00:35.13] Tình ta cũng phai nhoà\n[00:39.09] Còn đâu những giấc mơ ấm êm những ngày thơ\n[00:42.79] Để trái tim trở về...\n[00:46.82] Chuyến xe đưa mình đến đâu\n[00:50.18] Lạc mất nhau... nén trong tim một nỗi đau\n[00:54.70] Giấc mơ âm thầm đã lâu\n[00:58.22] Trôi theo ngày yêu dấu...\n[01:02.82] Khép đôi mi buồn khắc sâu\n[01:05.56] Lặng phía sau những con đường ta...\n[01:08.56] ...hôm qua cứ phôi phai nhạt màu\n[01:11.22] Bàn chân cũng thôi bước giữa ngày...\n[01:14.52] ...buồn trôi rất mau\n[01:18.22] Sao em lại không nói?\n[01:20.42] Sao anh lại không nói?\n[01:23.02] Để mùa hạ chói chang muộn màng chiều lang thang\n[01:26.46] Sao bao tia nắng không chiếu trong lòng?\n[01:30.18] Để nỗi buồn cứ lặng thầm nơi xa xăm...\n[01:34.48] Sao em lại không nói?\n[01:36.50] Sao ta lại không nói?\n[01:38.16] Để mùa hạ trôi miên mang qua từng đêm vắng\n[01:42.60] Làm sao cho mưa thôi rơi...\n[01:44.76] Để mình ta đơn côi bước qua mùa hạ...\n[02:21.35] Chuyến xe đưa mình đến đâu\n[02:24.18] Lạc mất nhau nén trong tim một nỗi đau\n[02:29.10] Giấc mơ âm thầm đã lâu\n[02:33.08] Trôi theo ngày yêu dấu\n[02:37.36] Khép đôi mi buồn khắc sâu\n[02:39.92] Lặng phía sau những con đường ta...\n[02:43.00] ...hôm qua cứ phôi phai nhạt màu\n[02:45.54] Bàn chân cũng thôi bước giữa ngày...\n[02:48.94] ...buồn trôi rất mau...\n[02:53.02] Sao em lại không nói?\n[02:54.88] Sao anh lại không nói?\n[02:56.98] Để mùa hạ chói chang muộn màng chiều lang thang\n[03:00.94] Sao bao tiếng nắng không chiếu trong lòng?\n[03:04.60] Để nỗi buồn cứ lặng thầm nơi xa xăm\n[03:08.72] Sao em lại không nói?\n[03:10.76] Sao ta lại không nói?\n[03:12.98] Để mùa hạ trôi miên man qua từng đêm vắng\n[03:17.16] Làm sao cho mưa thôi rơi?\n[03:19.30] Để mình ta đơn côi bước qua mùa hạ\n[03:24.38] Sao em lại không nói?\n[03:26.46] Sao ta lại không nói?\n[03:28.76] Để mùa hạ trôi miên man qua từng đêm vắng\n[03:32.76] Làm sao cho mưa thôi rơi?`,
             artist: 'Thái Đinh',
             duration: 0,
             addedFrom: 'local'
@@ -65,7 +65,7 @@ let playlists = {
         {
             title: 'Thiên Lý Ơi - Jack-97',
             path: 'music/d.mp3',
-            lyrics: '[00:07.319] ngày hôm nay trời Trung danh đẹp như\n[00:09.440] tranh mình cùng giào vong quanh cả thế\n[00:11.440] giới đừng vôi nhanh muốn hình trỉ nhặt\n[00:13.440] ký yêu thương đời mình ác vu vơ về tình\n[00:16.000] đầu em ơi ngày hôm ấy là cô bé tu Đôi\n[00:20.000] Mới vậy mà giờ đã lớn trường thành hơn\n[00:22.080] mặc về cười chạ đ Dữ xương bướt Gem tôi\n[00:24.519] phình ng mái cêu x đẹp tuyệt vời anh ở\n[00:28.599] vùng quê kh Hiều khó đó có trăm điều khó\n[00:33.120] muốn lên thành phố nên phải cố sao cho\n[00:36.600] bụng anh luôn No thế rồi gặp em nhưng\n[00:40.200] vùn vỡ đã lỡ đêm lại nhớ năm\n[00:44.960] mớ gọi tên\n[00:48.399] em Thiên Lý ơi em có thể ở lại đây không\n[00:54.000] biết chăng ngoài trời mưa giong nhiều cơ\n[00:56.920] đi lắm\n[00:58.920] ê Thiên Lý ơi Anh chỉ mong người bề thôi\n[01:04.239] nóm tay chặt nôi mơi x ngi xư l\n[01:23.040] đă nhiều vô nó dữ lắm á chư Vui quá Vui\n[01:29.479] quá\n[01:31.119] em yêu ái em đang yêu thương ái hay em\n[01:33.720] đang cô Đông chờ máu x cho tương Lái sao\n[01:36.159] cũng yêu ng bây giờ mà anh cho anh những\n[01:38.159] ngày thơ Đêm nay có làm ngơ bơ vơ như kẻ\n[01:40.600] làm thơ ngơ một mình đy x lại ngẫn ngơ\n[01:42.720] ng thư về con ngư là mà lòng thấy ngẫn\n[01:44.960] ngơ mẫu trên nào mình từng ngọt ngạo giờ\n[01:47.159] kết tay nắm tay áo em khép bay nhẹ láy\n[01:51.119] Anh ở cùng quê khô nghèo khó đó khó Trăm\n[01:55.680] điều khó muốn lên thành phố nên phải cố\n[01:59.479] Gi cho bụng anh muôn đ thế rồi gặp tiếng\n[02:03.320] như Cùng cỡ đã lỡ đêm lại nhớ Năm B có\n[02:11.640] đ đ th lý hơi em có thể ở lại đây không\n[02:17.200] ít chăng ngoài trời Mư Dong nhiều cơ đơ\n[02:20.760] lắm\n[02:22.800] Mê Thiên Lý ơi anh chỉ món người Bình\n[02:26.640] Nguyên thối nm Tây chặt nii m x ngi gi\n[02:31.280] lưng đố\n[02:34.200] V người là giấc mơ phiu phông lặng lẽ\n[02:39.800] như là gió đông đêm lạnh s sâ\n[02:44.920] sớ trời làm mã em thêm hồng một đời An\n[02:50.480] Yên anh hấy nhe\n[02:54.200] lòng trời ngn thờ Duyên chúng ta thành\n[02:57.599] thên l ơi em ở lại đy Khó nhết chăng\n[03:02.480] ngài trời mưa D nhiều cô đá\n[03:07.080] nơ thên đi ơi em ch b b đi ơi đng tay',
+            lyrics: `[00:07.31] ngày hôm nay trời Trung danh đẹp như\n[00:09.44] tranh mình cùng giào vong quanh cả thế\n[00:11.44] giới đừng vôi nhanh muốn hình trỉ nhặt\n[00:13.44] ký yêu thương đời mình ác vu vơ về tình\n[00:16.00] đầu em ơi ngày hôm ấy là cô bé tu Đôi\n[00:20.00] Mới vậy mà giờ đã lớn trường thành hơn\n[00:22.08] mặc về cười chạ đ Dữ xương bướt Gem tôi\n[00:24.51] phình ng mái cêu x đẹp tuyệt vời anh ở\n[00:28.59] vùng quê kh Hiều khó đó có trăm điều khó\n[00:33.12] muốn lên thành phố nên phải cố sao cho\n[00:36.60] bụng anh luôn No thế rồi gặp em nhưng\n[00:40.20] vùn vỡ đã lỡ đêm lại nhớ năm\n[00:44.96] mớ gọi tên\n[00:48.39] em Thiên Lý ơi em có thể ở lại đây không\n[00:54.00] biết chăng ngoài trời mưa giong nhiều cơ\n[00:56.92] đi lắm\n[00:58.92] ê Thiên Lý ơi Anh chỉ mong người bề thôi\n[01:04.23] nóm tay chặt nôi mơi x ngi xư l\n[01:23.04] đă nhiều vô nó dữ lắm á chư Vui quá Vui\n[01:29.47] quá\n[01:31.11] em yêu ái em đang yêu thương ái hay em\n[01:33.72] đang cô Đông chờ máu x cho tương Lái sao\n[01:36.15] cũng yêu ng bây giờ mà anh cho anh những\n[01:38.15] ngày thơ Đêm nay có làm ngơ bơ vơ như kẻ\n[01:40.60] làm thơ ngơ một mình đy x lại ngẫn ngơ\n[01:42.72] ng thư về con ngư là mà lòng thấy ngẫn\n[01:44.96] ngơ mẫu trên nào mình từng ngọt ngạo giờ\n[01:47.15] kết tay nắm tay áo em khép bay nhẹ láy\n[01:51.11] Anh ở cùng quê khô nghèo khó đó khó Trăm\n[01:55.68] điều khó muốn lên thành phố nên phải cố\n[01:59.47] Gi cho bụng anh muôn đ thế rồi gặp tiếng\n[02:03.32] như Cùng cỡ đã lỡ đêm lại nhớ Năm B có\n[02:11.64] đ đ th lý hơi em có thể ở lại đây không\n[02:17.20] ít chăng ngoài trời Mư Dong nhiều cơ đơ\n[02:20.76] lắm\n[02:22.80] Mê Thiên Lý ơi anh chỉ món người Bình\n[02:26.64] Nguyên thối nm Tây chặt nii m x ngi gi\n[02:31.28] lưng đố\n[02:34.20] V người là giấc mơ phiu phông lặng lẽ\n[02:39.80] như là gió đông đêm lạnh s sâ\n[02:44.92] sớ trời làm mã em thêm hồng một đời An\n[02:50.48] Yên anh hấy nhe\n[02:54.20] lòng trời ngn thờ Duyên chúng ta thành\n[02:57.59] thên l ơi em ở lại đy Khó nhết chăng\n[03:02.48] ngài trời mưa D nhiều cô đá\n[03:07.08] nơ thên đi ơi em ch b b đi ơi đng tay`,
             artist: 'Jack-97',
             duration: 0,
             addedFrom: 'local'
@@ -213,7 +213,7 @@ function changePlaylist(playlistName) {
 // Load song source and update UI, but don't auto play
 function loadSong(playlistName, songIndex) {
     const song = playlists[playlistName][songIndex];
-    console.log('Loading song:', song); // Log để kiểm tra
+    console.log('Loading song:', song);
 
     // Nếu là file ngoài, dùng proxy server Node.js tự tạo
     if (!(song.path.startsWith('music/') || song.path.startsWith(window.location.origin))) {
@@ -228,7 +228,25 @@ function loadSong(playlistName, songIndex) {
 
     currentSongDisplay.textContent = song.title;
     updateActivePlaylistItem();
-    updateLyrics();
+    
+    // Reset lyrics container and update with new lyrics
+    lyricsContainer.innerHTML = '';
+    if (song.lyrics) {
+        const lines = song.lyrics.split('\n').map(line => {
+            const match = line.match(/\[(\d{2}):(\d{2})\.(\d{2})\](.*)/);
+            if (match) {
+                const [, min, sec, ms, text] = match;
+                const time = parseInt(min) * 60 + parseInt(sec) + parseInt(ms) / 100;
+                return { time, text: text.trim() };
+            }
+            return null;
+        }).filter(line => line !== null);
+
+        const html = lines.map(line => `<div class="lyric-line" data-time="${line.time}">${line.text}</div>`).join('');
+        lyricsContainer.innerHTML = html;
+    } else {
+        lyricsContainer.innerHTML = '<div class="text-center text-muted">No lyrics available. Click "Edit Lyrics" to add them.</div>';
+    }
 
     audio.onloadedmetadata = () => {
         durationDisplay.textContent = formatTime(audio.duration);
@@ -258,51 +276,31 @@ function updateProgress() {
 // Update lyrics display
 function updateLyrics() {
     const currentSong = playlists[currentPlaylist][currentSongIndex];
-    if (!currentSong.lyrics) {
-        lyricsContainer.innerHTML = '<div class="text-center text-muted">No lyrics available. Click "Edit Lyrics" to add them.</div>';
-        return;
-    }
+    if (!currentSong.lyrics) return;
 
-    // Split lyrics into lines with timestamps
-    const lines = currentSong.lyrics.split('\n').map(line => {
-        const match = line.match(/\[(\d{2}):(\d{2})\.(\d{2})\](.*)/);
-        if (match) {
-            const [, min, sec, ms, text] = match;
-            const time = parseInt(min) * 60 + parseInt(sec) + parseInt(ms) / 100;
-            return { time, text: text.trim() };
-        }
-        return null;
-    }).filter(line => line !== null);
-
-    // Find current line based on audio time
     const currentTime = audio.currentTime;
-    const currentLine = lines.find((line, index) => {
-        const nextLine = lines[index + 1];
-        return line.time <= currentTime && (!nextLine || nextLine.time > currentTime);
-    });
-
-    if (currentLine) {
-        // Highlight current line and scroll it into view
-        const html = lines.map(line => {
-            const isCurrent = line === currentLine;
-            return `<div class="lyric-line ${isCurrent ? 'current' : ''}">${line.text}</div>`;
-        }).join('');
+    const lines = lyricsContainer.querySelectorAll('.lyric-line');
+    
+    lines.forEach(line => {
+        const time = parseFloat(line.dataset.time);
+        const nextLine = line.nextElementSibling;
+        const nextTime = nextLine ? parseFloat(nextLine.dataset.time) : Infinity;
         
-        lyricsContainer.innerHTML = html;
-        
-        // Scroll current line into view within the container
-        const currentElement = lyricsContainer.querySelector('.current');
-        if (currentElement) {
+        if (time <= currentTime && currentTime < nextTime) {
+            line.classList.add('current');
+            // Scroll current line into view within the container
             const containerRect = lyricsContainer.getBoundingClientRect();
-            const elementRect = currentElement.getBoundingClientRect();
-            const scrollTop = currentElement.offsetTop - lyricsContainer.offsetHeight / 2 + currentElement.offsetHeight / 2;
+            const elementRect = line.getBoundingClientRect();
+            const scrollTop = line.offsetTop - lyricsContainer.offsetHeight / 2 + line.offsetHeight / 2;
             
             lyricsContainer.scrollTo({
                 top: scrollTop,
                 behavior: 'smooth'
             });
+        } else {
+            line.classList.remove('current');
         }
-    }
+    });
 }
 
 // Play song
