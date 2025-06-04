@@ -1,4 +1,9 @@
-# ỨNG DỤNG CHƠI NHẠC ONLINE (MUSIC PLAYER)
+<div>
+        <a href="https://www.uit.edu.vn/" title="Trường Đại học Công nghệ Thông tin" target="_blank">
+            <img src="https://www.uit.edu.vn/sites/vi/files/banner_uit_15.png" alt="UIT Banner">
+        </a>
+</div>
+<h1> ỨNG DỤNG CHƠI NHẠC ONLINE (MUSIC PLAYER)</h1>
 
 ## Mục Lục
 
